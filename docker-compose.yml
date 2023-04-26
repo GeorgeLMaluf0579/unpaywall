@@ -1,0 +1,34 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:9.6-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    env_file:
+      - '.env'
+  redis:
+    image: redis:7.0-alpine
+    command: redis-server
+    ports:
+      - "6379:6379"
+    volumes:
+      - db_redis:/data
+  api:
+    build: ./api
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
+    volumes:
+      - ./api:/api
+    ports:
+      - "3000:3000"
+    env_file:
+      - ".env"
+    depends_on:
+      - postgres
+      - redis
+    tty: true
+    stdin_open: true
+volumes:
+  db_data:
+  db_redis:
