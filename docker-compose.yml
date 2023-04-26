@@ -8,6 +8,7 @@ services:
       - db_data:/var/lib/postgresql/data
     env_file:
       - '.env'
+
   redis:
     image: redis:7.0-alpine
     command: redis-server
@@ -15,6 +16,7 @@ services:
       - "6379:6379"
     volumes:
       - db_redis:/data
+
   api:
     build: ./api
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
@@ -29,6 +31,20 @@ services:
       - redis
     tty: true
     stdin_open: true
+
+  sidekiq:
+    build: ./api
+    volumes:
+      - ./api:/api
+    depends_on:
+      - api
+      - postgres
+      - redis
+    env_file:
+      - ".env"
+    environment:
+      RAILS_ENV: development
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec sidekiq"
 volumes:
   db_data:
   db_redis:
