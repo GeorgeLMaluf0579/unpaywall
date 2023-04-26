@@ -10,8 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_26_212008) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "dois", force: :cascade do |t|
+    t.string "expression"
+    t.string "doi"
+    t.string "title"
+    t.string "snippet"
+    t.binary "contents"
+    t.string "authors"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doi"], name: "index_dois_on_doi"
+    t.index ["expression"], name: "index_dois_on_expression"
+  end
 
 end
