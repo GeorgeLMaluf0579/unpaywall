@@ -3,7 +3,7 @@ class PdfReaderJob < ApplicationJob
 
   def perform(id, file_url)
     # binding.irb
-    # puts "#{id} - #{file_url}"
+    puts "#{id} - #{file_url}"
     # Do something later
   end
 end

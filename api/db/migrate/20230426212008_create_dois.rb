@@ -8,6 +8,7 @@ class CreateDois < ActiveRecord::Migration[7.0]
       t.blob  :contents
       t.string :authors 
       t.timestamps
+
       t.index :doi
       t.index :expression
     end
