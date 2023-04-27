@@ -10,7 +10,35 @@ The requirements is just any computer with a internet conection and Docker and D
 
 ## Setup
 ### Download the source code
+Run the follwing command on your shell:
+````
+$ git clone https://github.com/GeorgeLMaluf0579/unpaywall.git
+````
+
 ### Build the containers
+Get inside into project folder and run the command bellow:
+````
+$ make docker-build
+````
 ### Setup database
+Before run the project, you need setup the project database.To do that, call the following command:
+````
+$ make docker-setupdb
+````
 
 ## Runing the project
+To run the project, execute the following command:
+````
+$ docker-compose up
+````
+
+## Make a query
+Can you use the follow URL request on Postman to see the results:
+```
+http://localhost:3000/api/v1/search?email=georgelmaluf286@gmail.com&expression=cardiology```
+
+## Stop the project
+Just call the docker to stop the containers, as bellow:
+````
+$ docker-compose down
+````

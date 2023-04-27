@@ -47,3 +47,7 @@ end
 gem "sidekiq", "~> 7.0"
 
 gem "faraday", "~> 2.7"
+
+gem "pdf-reader", "~> 2.11"
+
+gem "blueprinter", "~> 0.25.3"

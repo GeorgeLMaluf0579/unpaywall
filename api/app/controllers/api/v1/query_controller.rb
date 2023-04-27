@@ -11,7 +11,7 @@ class Api::V1::QueryController < ApplicationController
     if response.status == 200
       pdf_results = ResultParser.parse(response.body)
       DoiProcessorService.new.process(params[:expression], pdf_results)
-      render json: Doi.where(expression: params[:expression]), status: :ok
+      render json: DoiBlueprinter.render(Doi.where(expression: params[:expression])), status: :ok
     end
   end
 end
