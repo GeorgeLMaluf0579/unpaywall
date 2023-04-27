@@ -1,0 +1,13 @@
+**/.DS_Store
+api/.bundle
+api/.byebug_history
+api/.rspec
+api/coverage
+api/log/*
+api/tmp/*
+api/tmp/pids/*
+api/spec/cassettes
+!api/log/.keep
+!api/tmp/.keep
+!api/tmp/pids/
+!api/tmp/pids/.keep
